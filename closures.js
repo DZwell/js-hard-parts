@@ -102,22 +102,36 @@ function after(count, func) {
 }
 
 // /*** Uncomment these to check your work! ***/
-const called = function() { console.log('hello') };
-const afterCalled = after(3, called);
-afterCalled(); // => nothing is printed
-afterCalled(); // => nothing is printed
-afterCalled(); // => 'hello' is printed
+// const called = function() { console.log('hello') };
+// const afterCalled = after(3, called);
+// afterCalled(); // => nothing is printed
+// afterCalled(); // => nothing is printed
+// afterCalled(); // => 'hello' is printed
 
 
 // CHALLENGE 6
 function delay(func, wait) {
-
+  return () => {
+    setTimeout(() => {
+      return func();
+    }, wait);
+  }
 }
+// const called = function() { console.log('hello') };
+// const delayed = delay(called, 5000);
+// delayed();
 
 
 // CHALLENGE 7
 function rollCall(names) {
-
+  let index = 0;
+  return () => {
+    if (index == names.length) {
+      console.log('Everyone accounted for');
+    }
+    console.log(names[index]);
+    index++;
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -130,7 +144,15 @@ function rollCall(names) {
 
 // CHALLENGE 8
 function saveOutput(func, magicWord) {
-
+  const outPutMap = {};
+  return (input) => {
+    const calledFuncValue = func(input);
+    outPutMap[input] = calledFuncValue;
+    if (input !== magicWord) {
+      return calledFuncValue;
+    }
+    return outPutMap;
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
