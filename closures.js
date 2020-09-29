@@ -165,7 +165,14 @@ function saveOutput(func, magicWord) {
 
 // CHALLENGE 9
 function cycleIterator(array) {
-
+  let index = 0;
+  return () => {
+    if (index == array.length) {
+      index -= index;
+    }
+    console.log(array[index]);
+    index++;
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -179,7 +186,9 @@ function cycleIterator(array) {
 
 // CHALLENGE 10
 function defineFirstArg(func, arg) {
-
+  return (nextArg) => {
+    return func(arg, nextArg);
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -190,7 +199,13 @@ function defineFirstArg(func, arg) {
 
 // CHALLENGE 11
 function dateStamp(func) {
-
+  return (input) => {
+    const output =  func(input);
+    return ({
+      date: `${new Date().getMonth() + 1}/${new Date().getDate()}`,
+      output
+    });
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
