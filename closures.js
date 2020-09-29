@@ -72,8 +72,15 @@ const addByTwo = addByX(2);
 
 // CHALLENGE 4
 function once(func) {
-  let didRun = false;
-  const val = func(func.arguments[0]);
+  let initialVal;
+  let ran = false;
+  return function gate(num) {
+    if (!ran) {
+      initialVal = func(num);
+      ran = true;
+    }
+    return initialVal;
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -85,15 +92,21 @@ function once(func) {
 
 // CHALLENGE 5
 function after(count, func) {
-
+  let called = 0;
+  return function wait() {
+    called++;
+    if (called === count) {
+      return func();
+    }
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
-// const called = function() { console.log('hello') };
-// const afterCalled = after(3, called);
-// afterCalled(); // => nothing is printed
-// afterCalled(); // => nothing is printed
-// afterCalled(); // => 'hello' is printed
+const called = function() { console.log('hello') };
+const afterCalled = after(3, called);
+afterCalled(); // => nothing is printed
+afterCalled(); // => nothing is printed
+afterCalled(); // => 'hello' is printed
 
 
 // CHALLENGE 6
