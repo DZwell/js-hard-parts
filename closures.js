@@ -216,7 +216,21 @@ function dateStamp(func) {
 
 // CHALLENGE 12
 function censor() {
+  let finalString;
+  const wordReplacementMap = {};
 
+  return (...args) => {
+    const argsArray = [...args];
+    if (argsArray.length === 2) {
+      wordReplacementMap[argsArray[0]] = argsArray[1];
+    } else if (argsArray.length === 1) {
+      finalString = argsArray[0];
+      Object.keys(wordReplacementMap).forEach(word => {
+        finalString = finalString.replace(word, wordReplacementMap[word]);
+      });
+      return finalString;
+    }
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -228,7 +242,12 @@ function censor() {
 
 // CHALLENGE 13
 function createSecretHolder(secret) {
+  let modifiedSecret = secret;
 
+  return ({
+    getSecret: () => console.log(modifiedSecret),
+    setSecret: (newSecret) => { modifiedSecret = newSecret }
+  });
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -240,7 +259,11 @@ function createSecretHolder(secret) {
 
 // CHALLENGE 14
 function callTimes() {
-
+  let times = 1;
+  return () => {
+    console.log(times);
+    times++;
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -254,7 +277,19 @@ function callTimes() {
 
 // CHALLENGE 15
 function russianRoulette(num) {
-
+  let times = 1;
+  let string;
+  return () => {
+    if (times < num) {
+      string = 'click';
+    } else if (times === num) {
+      string = 'bang';
+    } else if (times > num) {
+      string = 'reload to play again';
+    }
+    times++;
+    return string;
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
