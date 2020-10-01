@@ -356,9 +356,23 @@ return (func) => {
 // CHALLENGE 18
 function makeHistory(limit) {
   const stack = [];
+  const UNDO = 'undo';
+
   return (string) => {
-    if (stack.length === limit) {
-      stack.sh
+    if (string === UNDO && stack.length === 0) {
+      return 'nothing to undo';
+    }
+    else if (string === UNDO && stack.length !== 0) {
+      const deleted = stack.pop();
+      return `${deleted} undone`;
+    }
+    else if (stack.length === limit) {
+      stack.shift();
+      stack.push(string);
+      return `${string} done`;
+    } else {
+      stack.push(string);
+      return `${string} done`;
     }
   }
 }
