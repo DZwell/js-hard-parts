@@ -303,7 +303,21 @@ function russianRoulette(num) {
 
 // CHALLENGE 16
 function average() {
+  const nums = [];
+  let called = false;
 
+  return (num) => {
+    if (!called && num === undefined) {
+      return 0;
+    }
+    if (num !== undefined) {
+      nums.push(num);
+    }
+    called = true;
+
+    const sum = nums.reduce((a, b) => a + b, 0);
+    return sum / nums.length;
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -318,7 +332,13 @@ function average() {
 
 // CHALLENGE 17
 function makeFuncTester(arrOfTests) {
-
+return (func) => {
+  const results = arrOfTests.map(test => {
+    const modifiedFirstEl = func(test[0]);
+    return modifiedFirstEl === test[1];
+  });
+  return results.every(x => !!x);
+}
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -335,7 +355,12 @@ function makeFuncTester(arrOfTests) {
 
 // CHALLENGE 18
 function makeHistory(limit) {
-
+  const stack = [];
+  return (string) => {
+    if (stack.length === limit) {
+      stack.sh
+    }
+  }
 }
 
 // /*** Uncomment these to check your work! ***/
