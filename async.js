@@ -70,10 +70,10 @@ function everyXsecsForYsecs(func, interval, duration) {
     func();
     count++;
 
-    if (count === 20) {
+    if (count === duration) {
       clearInterval(intervalId);
     }
-  }, 2000);
+  }, interval * 1000);
 }
 // Uncomment the following lines to check your work!
 // function theEnd() {
@@ -85,12 +85,21 @@ function everyXsecsForYsecs(func, interval, duration) {
 /* CHALLENGE 7 */
 
 function delayCounter(target, wait) {
-
+  let count = 1;
+  return () => {
+    while (count <= target) {
+      setTimeout(() => {
+        console.log(count);
+      }, wait * 1000);
+      count++;
+      wait++;
+    }
+}
 }
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
-// const countLogger = delayCounter(3, 1000)
-// countLogger();
+const countLogger = delayCounter(3, 1000)
+countLogger();
 // After 1 second, log 1
 // After 2 seconds, log 2
 // After 3 seconds, log 3
