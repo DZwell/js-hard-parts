@@ -15,7 +15,7 @@ function testMe() {
 /* CHALLENGE 2 */
 
 function delayedGreet() {
-  // ADD CODE HERE
+  setTimeout(() => console.log('Welcome'), 3000);
 }
 // Uncomment the following line to check your work!
 // delayedGreet(); // should log (after 3 seconds): welcome
@@ -24,7 +24,10 @@ function delayedGreet() {
 /* CHALLENGE 3 */
 
 function helloGoodbye() {
-  // ADD CODE HERE
+  console.log('hello');
+  setTimeout(() => {
+    console.log('goodebye');
+  }, 3000);
 }
 // Uncomment the following line to check your work!
 // helloGoodbye(); // should log: hello // should also log (after 3 seconds): good bye
@@ -33,7 +36,9 @@ function helloGoodbye() {
 /* CHALLENGE 4 */
 
 function brokenRecord() {
-  // ADD CODE HERE
+  setInterval(() => {
+    console.log('hi again');
+  }, 1000);
 }
 // Uncomment the following line to check your work!
 // brokenRecord(); // should log (every second): hi again
@@ -42,7 +47,16 @@ function brokenRecord() {
 /* CHALLENGE 5 */
 
 function limitedRepeat() {
-  // ADD CODE HERE
+  let count = 0;
+  const intervalId = setInterval(() => {
+    console.log('hi for now');
+    count++;
+
+    if (count === 5) {
+      clearInterval(intervalId);
+    }
+  }, 1000);
+
 }
 // Uncomment the following line to check your work!
 // limitedRepeat(); // should log (every second, for 5 seconds): hi for now
@@ -50,8 +64,16 @@ function limitedRepeat() {
 
 /* CHALLENGE 6 */
 
-function everyXsecsForYsecs() {
-  // ADD CODE HERE
+function everyXsecsForYsecs(func, interval, duration) {
+  let count = 0;
+  const intervalId = setInterval(() => {
+    func();
+    count++;
+
+    if (count === 20) {
+      clearInterval(intervalId);
+    }
+  }, 2000);
 }
 // Uncomment the following lines to check your work!
 // function theEnd() {
