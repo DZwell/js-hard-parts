@@ -115,11 +115,30 @@ function promised (val) {
 /* CHALLENGE 9 */
 
 class SecondClock {
+  stopSignaled = false;
+  count = 1;
   constructor(cb) {
-    // ADD CODE HERE
+    this.cb = cb;
   }
+
+  reset = () => {
+    this.stopSignaled = true;
+    this.count = 1;
+  }
+
   start = () => {
-    for (let i = 1; i)
+    const timer = setInterval(() => {
+      this.cb(this.count);
+      this.count++;
+
+      if (this.count === 60) {
+        this.count = 1;
+      }
+
+      if (this.stopSignaled) {
+        clearInterval(timer);
+      }
+    }, 1000);
   }
 }
 
@@ -135,14 +154,23 @@ class SecondClock {
 /* CHALLENGE 10 */
 
 function debounce(callback, interval) {
-  // ADD CODE HERE
+  let called = false;
+   return () => {
+     if (!called) {
+       setInterval(() => {
+         console.log('here')
+        callback();
+        called = true;
+       }, interval);
+     }
+   }
 }
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
-// function giveHi() { return 'hi'; }
-// const giveHiSometimes = debounce(giveHi, 3000);
-// console.log(giveHiSometimes()); // -> 'hi'
-// setTimeout(function() { console.log(giveHiSometimes()); }, 2000); // -> undefined
-// setTimeout(function() { console.log(giveHiSometimes()); }, 4000); // -> undefined
-// setTimeout(function() { console.log(giveHiSometimes()); }, 8000); // -> 'hi'
+function giveHi() { return 'hi'; }
+const giveHiSometimes = debounce(giveHi, 3000);
+console.log(giveHiSometimes()); // -> 'hi'
+setTimeout(function() { console.log(giveHiSometimes()); }, 2000); // -> undefined
+setTimeout(function() { console.log(giveHiSometimes()); }, 4000); // -> undefined
+setTimeout(function() { console.log(giveHiSometimes()); }, 8000); // -> 'hi'
 
