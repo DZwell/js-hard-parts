@@ -158,7 +158,6 @@ function debounce(callback, interval) {
    return () => {
      if (!called) {
        setInterval(() => {
-         console.log('here')
         callback();
         called = true;
        }, interval);
@@ -174,3 +173,4 @@ setTimeout(function() { console.log(giveHiSometimes()); }, 2000); // -> undefine
 setTimeout(function() { console.log(giveHiSometimes()); }, 4000); // -> undefined
 setTimeout(function() { console.log(giveHiSometimes()); }, 8000); // -> 'hi'
 
+bXL$a528*R8zblna
