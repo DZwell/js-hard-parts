@@ -82,7 +82,7 @@ function intersection(arrays) {
   return finalArray
 }
 
-console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
+// console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
 // should log: [5, 15]
 
 
@@ -97,7 +97,10 @@ function union(arrays) {
 
 // Challenge 9
 function objOfMatches(array1, array2, callback) {
+  const obj = {};
 
+  array1.forEach((el, index) => obj[el] = callback(array2[index]));
+  return obj;
 }
 
 // console.log(objOfMatches(['hi', 'howdy', 'bye', 'later', 'hello'], ['HI', 'Howdy', 'BYE', 'LATER', 'hello'], function(str) { return str.toUpperCase(); }));
@@ -106,7 +109,7 @@ function objOfMatches(array1, array2, callback) {
 
 // Challenge 10
 function multiMap(arrVals, arrCallbacks) {
-
+  const obj = {};
 }
 
 // console.log(multiMap(['catfood', 'glue', 'beer'], [function(str) { return str.toUpperCase(); }, function(str) { return str[0].toUpperCase() + str.slice(1).toLowerCase(); }, function(str) { return str + str; }]));
